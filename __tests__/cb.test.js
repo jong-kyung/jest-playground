@@ -1,11 +1,7 @@
-import fetchData from "../src/fetchData";
+import fetchDataCallback from "../src/fetchDataCallback";
 
 test("데이터가 peanut butter인지 테스트(use done argument)", (done) => {
-  function callback(error, data) {
-    if (error) {
-      done(error); // 오류를 `done`에 전달하여 테스트 실패 처리
-      return;
-    }
+  function callback(data) {
     try {
       expect(data).toBe("peanut butter");
       done(); // 모든 검증이 성공적으로 완료되면 `done` 호출
@@ -14,7 +10,7 @@ test("데이터가 peanut butter인지 테스트(use done argument)", (done) => 
     }
   }
 
-  fetchData(callback);
+  fetchDataCallback(callback);
 });
 
 test("데이터가 peanut butter인지 테스트 (no done argument)", () => {
@@ -23,5 +19,5 @@ test("데이터가 peanut butter인지 테스트 (no done argument)", () => {
     expect(data).toBe("peanut butter");
   }
 
-  fetchData(callback);
+  fetchDataCallback(callback);
 });
